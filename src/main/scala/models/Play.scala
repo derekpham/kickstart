@@ -1,5 +1,14 @@
 package models
 
 trait Play {
-  def execute: Unit
+  def actuallyExecute(): Unit
+  def dryRun(): Unit
+
+  def execute(dryRun: Boolean = false): Unit = {
+    if (dryRun) {
+      this.dryRun()
+    } else {
+      this.actuallyExecute()
+    }
+  }
 }
