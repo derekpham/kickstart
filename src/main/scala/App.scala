@@ -1,3 +1,4 @@
+import org.yaml.snakeyaml.Yaml
 import parser.Parser
 
 import scala.io.Source
