@@ -2,7 +2,8 @@ package parser
 
 import java.util
 
-import models.{Play, Playbook}
+import models.validation.{SimpleValidator, Validator}
+import models.{AbstractPlay, Play, Playbook}
 import org.yaml.snakeyaml.Yaml
 import parser.play.PackageInstallParser
 
@@ -22,6 +23,7 @@ object Parser {
 
     val playName = rawObj.keySet().asScala.head
     val playValue = rawObj.get(playName).asInstanceOf[util.Map[String, Any]]
+    println(playValue.get("validate"))
     playName match {
       case "install" => PackageInstallParser.parse(playValue)
       case illegalPlayName => throw InvalidSyntaxException(s"Illegal play name: $illegalPlayName")

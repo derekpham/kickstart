@@ -1,0 +1,19 @@
+---
+- install:
+    packages:
+      - git
+      - java
+    validate:
+      - m: "These packages are installed"
+      - m: "blah"
+      - m: "bleh"
+
+- dotfiles:
+    version_control_link: "https://github.com/derekpham/something/something"
+    validate:
+      - oh_my_zsh:
+          - m: "The theme for oh-my-zsh is correct"
+          - m: "The git plugin is installed"
+      - tmux:
+          - m: "tmux key bindings are working properly"
+          - m: "tmux visual layouts are correct"

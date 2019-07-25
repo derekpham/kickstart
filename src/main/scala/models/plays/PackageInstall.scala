@@ -1,9 +1,12 @@
 package models.plays
 
-import models.Play
-import sys.process._
+import models.AbstractPlay
+import models.validation.Validator
 
-class PackageInstall(packageNames: Iterable[String]) extends Play {
+import scala.sys.process._
+
+class PackageInstall(packageNames: Iterable[String], validators: List[Validator] = List())
+  extends AbstractPlay(validators) {
 
   override def actuallyExecute(): Unit = {
     val process = Process(getCommand) // TODO fix the command
@@ -12,6 +15,10 @@ class PackageInstall(packageNames: Iterable[String]) extends Play {
 
   override def dryRun(): Unit = {
     println(s"Would have run: '$getCommand'")
+  }
+
+  override def validate(): Unit = {
+    validators.foreach(_.validate())
   }
 
   private def getCommand: String = {
