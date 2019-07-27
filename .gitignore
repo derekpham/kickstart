@@ -1,3 +1,7 @@
 .idea
 target
 project
+*.iml
+*.gradle
+build/
+gradle
